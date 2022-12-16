@@ -5,7 +5,8 @@
 > I modified some of the code for this project to suit my needs.Thanks this project developer provide such good software!
 >
 > - 1: il8n, only have English and Simplified Chinese, Default Language is Simplified Chinese.
-> - 2: I add registration function for navidrome.
+> - 2: I added registration function for navidrome.
+> - 3: I added my favorite theme style(Like netease-music).
 
 Sonixd is a cross-platform desktop client built for Subsonic-API (and Jellyfin in 0.8.0+) compatible music servers. This project was inspired by the many existing clients, but aimed to address a few key issues including <strong>scalability</strong>, <strong>library management</strong>, and <strong>user experience</strong>.
 
