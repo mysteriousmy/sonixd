@@ -1,6 +1,6 @@
 <img src="assets/icon.png" alt="sonixd logo" title="sonixd" align="right" height="60px" />
 
-# Sonixd - MystyleEditionW
+# Sonixd - MyStyleEdition
 
 > I modified some of the code for this project to suit my needs.Thanks this project developer provide such good software!
 >
