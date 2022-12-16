@@ -1,27 +1,11 @@
 <img src="assets/icon.png" alt="sonixd logo" title="sonixd" align="right" height="60px" />
 
-# Sonixd
+# Sonixd - MystyleEditionW
 
-  <a href="https://github.com/jeffvli/sonixd/releases">
-    <img src="https://img.shields.io/github/v/release/jeffvli/sonixd?style=flat-square&color=blue"
-    alt="Release">
-  </a>
-  <a href="https://github.com/jeffvli/sonixd/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/jeffvli/sonixd?style=flat-square&color=brightgreen"
-    alt="License">
-  </a>
-  <a href="https://github.com/jeffvli/sonixd/releases">
-    <img src="https://img.shields.io/github/downloads/jeffvli/sonixd/total?style=flat-square&color=orange"
-    alt="Downloads">
-  </a>
-  <a href="https://discord.gg/FVKpcMDy5f">
-    <img src="https://img.shields.io/discord/922656312888811530?color=red&label=discord&logo=discord&logoColor=white"
-    alt="Discord">
-  </a>
-  <a href="https://matrix.to/#/#sonixd:matrix.org">
-    <img src="https://img.shields.io/matrix/sonixd:matrix.org?color=red&label=matrix&logo=matrix&logoColor=white"
-    alt="Matrix">
-  </a>
+> I modified some of the code for this project to suit my needs.Thanks this project developer provide such good software!
+>
+> - 1: il8n, only have English and Simplified Chinese, Default Language is Simplified Chinese.
+> - 2: I add registration function for navidrome.
 
 Sonixd is a cross-platform desktop client built for Subsonic-API (and Jellyfin in 0.8.0+) compatible music servers. This project was inspired by the many existing clients, but aimed to address a few key issues including <strong>scalability</strong>, <strong>library management</strong>, and <strong>user experience</strong>.
 
