@@ -44,7 +44,7 @@ module.exports = {
   lineEnding: 'auto',
   // Control the line ending. See options at https://github.com/ryanve/eol
 
-  locales: ['en', 'de', 'zhcn', 'es', 'si', 'it', 'tr'],
+  locales: ['zhcn', 'en'],
   // An array of the locales in your applications
 
   namespaceSeparator: false,
@@ -100,7 +100,7 @@ module.exports = {
   //   description: "${maxLength}", //
   // }
 
-  resetDefaultValueLocale: 'en',
+  resetDefaultValueLocale: 'zhcn',
   // The locale to compare with default values to determine whether a default value has been changed.
   // If this is set and a default value differs from a translation in the specified locale, all entries
   // for that key across locales are reset to the default value, and existing translations are moved to

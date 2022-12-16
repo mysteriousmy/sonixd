@@ -61,7 +61,7 @@ const setDefaultSettings = (force: boolean) => {
   }
 
   if (force || !settings.hasSync('language')) {
-    settings.setSync('language', 'en');
+    settings.setSync('language', 'zhcn');
   }
 
   if (force || !settings.hasSync('theme')) {

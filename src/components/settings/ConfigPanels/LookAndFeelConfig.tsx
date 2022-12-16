@@ -54,6 +54,7 @@ import { setPagination } from '../../../redux/viewSlice';
 import { MUSIC_SORT_TYPES } from '../../library/MusicList';
 import Popup from '../../shared/Popup';
 import { apiController } from '../../../api/controller';
+import { mockSettings } from '../../../shared/mockSettings';
 
 export const ListViewConfigPanel = ({ bordered }: any) => {
   const { t } = useTranslation();
@@ -321,7 +322,7 @@ export const ThemeConfigPanel = ({ bordered }: any) => {
               data={Languages}
               width={200}
               cleanable={false}
-              defaultValue={String(settings.getSync('language'))}
+              defaultValue={String(mockSettings.language)}
               placeholder={t('Select')}
               onChange={(e: string) => {
                 i18n.changeLanguage(e, (err) => {
