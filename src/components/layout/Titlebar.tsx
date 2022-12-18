@@ -10,7 +10,8 @@ import {
 } from './styled';
 import { useAppSelector } from '../../redux/hooks';
 import { getCurrentEntryList } from '../../shared/utils';
-import logo from '../../../assets/icon.png';
+import LightSiderLogo from '../../../assets/headerlogoLight.png';
+import DarkSiderLogo from '../../../assets/headerlogoLight.png';
 
 const Titlebar = ({ font }: any) => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ const Titlebar = ({ font }: any) => {
   const [hoverMin, setHoverMin] = useState(false);
   const [hoverMax, setHoverMax] = useState(false);
   const [hoverClose, setHoverClose] = useState(false);
-
+  console.log(document.title);
   useEffect(() => {
     const currentEntryList = getCurrentEntryList(playQueue);
 
@@ -32,7 +33,7 @@ const Titlebar = ({ font }: any) => {
       ? `(${playQueue.currentIndex + 1} / ${playQueue[currentEntryList].length}) ~ ${
           playQueue[currentEntryList][playQueue.currentIndex]?.title
         } ~ ${playQueue[currentEntryList][playQueue.currentIndex]?.artist[0]?.title} `
-      : 'Sonixd';
+      : '';
 
     setTitle(`${playStatus} ${songTitle}`.trim());
     document.title = `${playStatus} ${songTitle}`.trim();
@@ -116,7 +117,18 @@ const Titlebar = ({ font }: any) => {
           <>
             <div id="window-title-wrapper">
               <span id="window-title">
-                <img src={logo} height="20px" width="20px" alt="" style={{ marginRight: '5px' }} />
+                <img
+                  src={
+                    misc.theme.includes('Light')
+                      ? misc.theme.includes('Red')
+                        ? DarkSiderLogo
+                        : LightSiderLogo
+                      : DarkSiderLogo
+                  }
+                  width="70px"
+                  alt=""
+                  style={{ marginRight: '10px' }}
+                />
                 {title}
               </span>
             </div>

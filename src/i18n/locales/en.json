@@ -150,6 +150,8 @@
   "If your audio files are not playing properly or are not in a supported web streaming format, you will need to enable this (requires app restart).": "If your audio files are not playing properly or are not in a supported web streaming format, you will need to enable this (requires app restart).",
   "Images": "Images",
   "Info": "Info",
+  "Sign Up": "Sign Up",
+  "Confirm Enter password": "Confirm Enter password",
   "Integrates with Discord's rich presence to display the currently playing song as your status.": "Integrates with Discord's rich presence to display the currently playing song as your status.",
   "Items per page (Albums)": "Items per page (Albums)",
   "Items per page (Songs)": "Items per page (Songs)",

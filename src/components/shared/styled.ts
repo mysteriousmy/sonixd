@@ -20,7 +20,10 @@ import {
   Pagination,
 } from 'rsuite';
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import TagLink from './TagLink';
+import LightLogo from '../../../assets/icon2.png';
+import DarkLogo from '../../../assets/icon3.png';
 
 export const HeaderButton = styled(Button)`
   margin-left: 5px;
@@ -88,7 +91,13 @@ export const StyledButton = styled(Button)<{ width: number; $circle: boolean }>`
     filter: brightness(0.8);
   }
 `;
-
+export const CustomLoginLogo = styled.div`
+  height: 80px;
+  width: 200px;
+  background: url('${(props) => (props.theme.type === 'light' ? LightLogo : DarkLogo)}');
+  background-repeat: no-repeat;
+  background-size: contain;
+`;
 export const StyledInputGroup = styled(InputGroup)`
   border-radius: ${(props) => props.theme.other.input.borderRadius};
 `;
@@ -665,6 +674,7 @@ export const StyledPagination = styled(Pagination)`
   .rs-pagination-btn-active {
     a {
       color: ${(props) => props.theme.colors.primary} !important;
-    }
+    }import { LazyLoadImage } from 'react-lazy-load-image-component';
+
   }
 `;

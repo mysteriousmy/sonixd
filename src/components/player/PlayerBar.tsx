@@ -21,7 +21,7 @@ import { setVolume } from '../../redux/playQueueSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Player from './Player';
 import CustomTooltip from '../shared/CustomTooltip';
-import placeholderImg from '../../img/placeholder.png';
+import LightSiderLogo from '../../img/placeholder.png';
 import DebugWindow from '../debug/DebugWindow';
 import { getCurrentEntryList, writeOBSFiles } from '../../shared/utils';
 import { SecondaryTextWrapper, StyledButton, StyledRate } from '../shared/styled';
@@ -37,6 +37,7 @@ import usePlayQueueHandler from '../../hooks/usePlayQueueHandler';
 import { apiController } from '../../api/controller';
 import Slider from '../slider/Slider';
 import useDiscordRpc from '../../hooks/useDiscordRpc';
+import DarkSiderLogo from '../../img/darkpreload.png';
 
 const PlayerBar = () => {
   const { t } = useTranslation();
@@ -44,6 +45,7 @@ const PlayerBar = () => {
   const playQueue = useAppSelector((state) => state.playQueue);
   const player = useAppSelector((state) => state.player);
   const config = useAppSelector((state) => state.config);
+  const theme = useAppSelector((state) => state.misc.theme);
   const folder = useAppSelector((state) => state.folder);
   const dispatch = useAppDispatch();
   const [currentTime, setCurrentTime] = useState(0);
@@ -257,8 +259,11 @@ const PlayerBar = () => {
                       <CoverArtContainer expand={config.lookAndFeel.sidebar.expand}>
                         <LazyLoadImage
                           src={
-                            playQueue[currentEntryList][playQueue.currentIndex]?.image ||
-                            placeholderImg
+                            playQueue[currentEntryList][playQueue.currentIndex]?.image
+                              ? playQueue[currentEntryList][playQueue.currentIndex]?.image
+                              : theme.includes('Light')
+                              ? LightSiderLogo
+                              : DarkSiderLogo
                           }
                           tabIndex={0}
                           onClick={() => setShowCoverArtModal(true)}
@@ -788,7 +793,14 @@ const PlayerBar = () => {
             playQueue[currentEntryList][playQueue.currentIndex]?.image.replace(
               /&size=\d+|width=\d+&height=\d+&quality=\d+/,
               ''
-            ) || placeholderImg
+            )
+              ? playQueue[currentEntryList][playQueue.currentIndex]?.image.replace(
+                  /&size=\d+|width=\d+&height=\d+&quality=\d+/,
+                  ''
+                )
+              : theme.includes('Light')
+              ? LightSiderLogo
+              : DarkSiderLogo
           }
           style={{
             width: 'auto',

@@ -131,7 +131,7 @@ body {
   width: calc(80%);
   white-space: nowrap;
   height: 100%;
-  padding: 2px;
+  padding-left: 5px;
 }
 
 #window-title {

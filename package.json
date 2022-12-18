@@ -31,7 +31,7 @@
     ]
   },
   "build": {
-    "productName": "Sonixd",
+    "productName": "源音云",
     "appId": "org.erb.sonixd",
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
     "files": [

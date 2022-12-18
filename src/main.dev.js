@@ -601,25 +601,25 @@ const createTray = () => {
   tray = isLinux() ? new Tray(getAssetPath('icon.png')) : new Tray(getAssetPath('icon.ico'));
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Play/Pause',
+      label: '播放/暂停',
       click: () => {
         playPause();
       },
     },
     {
-      label: 'Next Track',
+      label: '下一首',
       click: () => {
         nextTrack();
       },
     },
     {
-      label: 'Previous Track',
+      label: '上一首',
       click: () => {
         previousTrack();
       },
     },
     {
-      label: 'Stop',
+      label: '停止',
       click: () => {
         stop();
       },
@@ -628,14 +628,14 @@ const createTray = () => {
       type: 'separator',
     },
     {
-      label: 'Open main window',
+      label: '打开主窗口',
       click: () => {
         mainWindow.show();
         createWinThumbarButtons();
       },
     },
     {
-      label: 'Quit Sonixd',
+      label: '退出源音云',
       click: () => {
         exitFromTray = true;
         app.quit();
@@ -648,7 +648,7 @@ const createTray = () => {
     createWinThumbarButtons();
   });
 
-  tray.setToolTip('Sonixd');
+  tray.setToolTip('源音云');
   tray.setContextMenu(contextMenu);
 };
 

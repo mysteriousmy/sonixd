@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { Container, Content, Divider, Footer, Header, Nav, Sidebar } from 'rsuite';
 
 // Layout.tsx
@@ -389,7 +390,7 @@ export const SidebarCoverArtContainer = styled.div<{ height: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(50, 50, 50, 0.2);
+  background: transparent;
 
   img {
     max-height: ${(props) => props.height};

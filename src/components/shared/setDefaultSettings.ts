@@ -45,11 +45,11 @@ const setDefaultSettings = (force: boolean) => {
   }
 
   if (force || !settings.hasSync('autoUpdate')) {
-    settings.setSync('autoUpdate', true);
+    settings.setSync('autoUpdate', false);
   }
 
   if (force || !settings.hasSync('autoUpdateNotice')) {
-    settings.setSync('autoUpdateNotice', true);
+    settings.setSync('autoUpdateNotice', false);
   }
 
   if (force || !settings.hasSync('serverType')) {
@@ -65,7 +65,7 @@ const setDefaultSettings = (force: boolean) => {
   }
 
   if (force || !settings.hasSync('theme')) {
-    settings.setSync('theme', 'defaultDark');
+    settings.setSync('theme', 'neteaseRedLight');
   }
 
   if (force || !settings.hasSync('font')) {
@@ -169,7 +169,7 @@ const setDefaultSettings = (force: boolean) => {
   }
 
   if (force || !settings.hasSync('sidebar.coverArt')) {
-    settings.setSync('sidebar.coverArt', true);
+    settings.setSync('sidebar.coverArt', false);
   }
 
   if (force || !settings.hasSync('sidebar.selected')) {
@@ -613,7 +613,168 @@ const setDefaultSettings = (force: boolean) => {
 
   settings.setSync('themesDefault', [
     {
-      label: 'Default Dark',
+      label: '网易云红',
+      value: 'neteaseRedLight',
+      type: 'light',
+      fonts: {
+        size: {
+          page: '14px',
+          panelTitle: '20px',
+        },
+      },
+      colors: {
+        primary: '#C63A39',
+        layout: {
+          page: {
+            color: '#3F4142',
+            colorSecondary: '#C63A39',
+            background: '#FAF4F0',
+          },
+          playerBar: {
+            color: '#3F4142',
+            colorSecondary: '#C63A39',
+            background: '#e0e0e2',
+            button: {
+              color: '#C63A39',
+              colorHover: '#C63A39',
+            },
+          },
+          sideBar: {
+            background: '#e0e0e2',
+            button: {
+              color: '#3F4142',
+              colorHover: '#C63A39',
+            },
+          },
+          titleBar: {
+            color: '#FFFFFF',
+            background: '#C63A39',
+          },
+          miniPlayer: {
+            background: '#FAF4F0',
+          },
+        },
+        button: {
+          default: {
+            color: '#FAF4F0',
+            colorHover: '#FAF4F0',
+            background: '#C63A39',
+            backgroundHover: '#e26a6a',
+          },
+          primary: {
+            color: '#FAF4F0',
+            colorHover: '#FAF4F0',
+            backgroundHover: '#e26a6a',
+          },
+          subtle: {
+            color: '#C63A39',
+            colorHover: '#3F4142',
+            backgroundHover: 'transparent',
+          },
+        },
+        card: {
+          overlayButton: {
+            color: '#3F4142',
+            background: 'transparent',
+            backgroundHover: '#C63A39',
+            opacity: 0.8,
+          },
+        },
+        contextMenu: {
+          color: '#3F4142',
+          colorDisabled: '#e26a6a',
+          background: '#e7e7e7',
+          backgroundHover: '#504945',
+        },
+        input: {
+          color: '#3F4142',
+          background: '#e7e7e7',
+          backgroundHover: '#C63A39',
+          backgroundActive: 'rgba(80, 63, 79, 1)',
+        },
+        nav: {
+          color: '#3F4142',
+        },
+        popover: {
+          color: '#3F4142',
+          background: '#e7e7e7',
+        },
+        slider: {
+          background: '#c5c5c5',
+          progressBar: '#C63A39',
+        },
+        spinner: {
+          background: '#e7e7e7',
+          foreground: '#3F4142',
+        },
+        table: {
+          selectedRow: 'rgba(124, 111, 100, .3)',
+        },
+        tag: {
+          background: '#C63A39',
+          text: '#FFFFFF',
+        },
+        tooltip: {
+          color: '#FFFFFF',
+          background: '#3F4142',
+        },
+      },
+      other: {
+        button: {
+          borderRadius: '15px',
+        },
+        coverArtBorderRadius: '5px',
+        coverArtFilter: 'none',
+        card: {
+          border: 'none',
+          hover: {
+            transform: 'none',
+            transition: 'none',
+            filter: 'none',
+          },
+          image: {
+            borderTop: '2px transparent ridge',
+            borderRight: '2px transparent ridge',
+            borderBottom: '2px transparent ridge',
+            borderLeft: '2px transparent ridge',
+            borderRadius: '15px',
+          },
+          info: {
+            borderTop: 'none',
+            borderRight: 'none',
+            borderBottom: 'none',
+            borderLeft: 'none',
+            borderRadius: '0px',
+          },
+        },
+        input: {
+          borderRadius: '15px',
+        },
+        miniPlayer: {
+          height: '450px',
+          opacity: 0.95,
+        },
+        panel: {
+          borderRadius: '0px',
+        },
+        playerBar: {
+          borderTop: '1px solid #c5c5c5',
+          borderRight: 'none',
+          borderBottom: 'none',
+          borderLeft: 'none',
+          filter: 'none',
+        },
+        tag: {
+          borderRadius: '15px',
+        },
+        tooltip: {
+          border: '1px #c5c5c5 solid',
+          borderRadius: '5px',
+        },
+      },
+    },
+    {
+      label: '默认黑',
       value: 'defaultDark',
       type: 'dark',
       fonts: {
@@ -774,7 +935,7 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'Default Light',
+      label: '默认白',
       value: 'defaultLight',
       type: 'light',
       fonts: {
@@ -936,8 +1097,8 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'Plex-like',
-      value: 'plexLike',
+      label: 'Plex样式',
+      value: 'plexLikeDark',
       type: 'dark',
       fonts: {
         size: {
@@ -1034,7 +1195,7 @@ const setDefaultSettings = (force: boolean) => {
           selectedRow: 'rgba(150, 150, 150, .3)',
         },
         tag: {
-          background: '##3C3F43',
+          background: '#3C3F43',
           text: '#E2E4E9',
         },
         tooltip: {
@@ -1097,8 +1258,8 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'Spotify-like',
-      value: 'spotifyLike',
+      label: 'Spotify样式',
+      value: 'spotifyLikeDark',
       type: 'dark',
       fonts: {
         size: {
@@ -1258,8 +1419,8 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'City Lights',
-      value: 'cityLights',
+      label: '典雅黑',
+      value: 'cityDark',
       type: 'dark',
       fonts: {
         size: {
@@ -1419,7 +1580,7 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'One Dark',
+      label: '黑灰蓝',
       value: 'oneDark',
       type: 'dark',
       fonts: {
@@ -1580,7 +1741,7 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'Gruvbox Dark',
+      label: 'Gruvbox样式黑',
       value: 'gruvboxDark',
       type: 'dark',
       fonts: {
@@ -1741,7 +1902,7 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'Gruvbox Light',
+      label: 'Gruvbox样式白',
       value: 'gruvboxLight',
       type: 'light',
       fonts: {
@@ -1903,7 +2064,7 @@ const setDefaultSettings = (force: boolean) => {
       },
     },
     {
-      label: 'Breeze Dark',
+      label: '微风暗',
       value: 'breezeDark',
       type: 'dark',
       fonts: {

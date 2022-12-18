@@ -17,9 +17,10 @@ import {
 } from './styled';
 import { StyledButton } from '../shared/styled';
 import { InfoModal } from '../modal/Modal';
-import placeholderImg from '../../img/placeholder.png';
 import SidebarPlaylists from './SidebarPlaylists';
 import { setSidebar } from '../../redux/configSlice';
+import LightSiderLogo from '../../img/placeholder.png';
+import DarkSiderLogo from '../../img/darkpreload.png';
 
 const Sidebar = ({
   expand,
@@ -35,6 +36,7 @@ const Sidebar = ({
   const history = useHistory();
   const playQueue = useAppSelector((state) => state.playQueue);
   const config = useAppSelector((state) => state.config);
+  const theme = useAppSelector((state) => state.misc.theme);
   const [width, setWidth] = useState(Number(config.lookAndFeel.sidebar.width.replace('px', '')));
   const [isResizing, setIsResizing] = useState(false);
   const [showCoverArtModal, setShowCoverArtModal] = useState(false);
@@ -43,7 +45,7 @@ const Sidebar = ({
   );
   const [mainNavRef, { height: mainNavHeight }] = useMeasure<HTMLDivElement>();
   const [sidebarBodyRef, { height: sidebarBodyHeight }] = useMeasure<HTMLDivElement>();
-
+  console.log(theme);
   const getSidebarWidth = useCallback((num: number) => {
     if (num < 165) {
       return 165;
@@ -104,11 +106,17 @@ const Sidebar = ({
             <SidebarCoverArtContainer height={`${width}px`}>
               <LazyLoadImage
                 onClick={() => setShowCoverArtModal(true)}
+                width={200}
+                height={200}
                 src={
-                  playQueue.current?.image.replace(
-                    /&size=\d+|width=\d+&height=\d+&quality=\d+/,
-                    ''
-                  ) || placeholderImg
+                  playQueue.current?.image.replace(/&size=\d+|width=\d+&height=\d+&quality=\d+/, '')
+                    ? playQueue.current?.image.replace(
+                        /&size=\d+|width=\d+&height=\d+&quality=\d+/,
+                        ''
+                      )
+                    : theme.includes('Light')
+                    ? LightSiderLogo
+                    : DarkSiderLogo
                 }
               />
               <StyledButton
@@ -343,8 +351,11 @@ const Sidebar = ({
       <InfoModal show={showCoverArtModal} handleHide={() => setShowCoverArtModal(false)}>
         <LazyLoadImage
           src={
-            playQueue.current?.image.replace(/&size=\d+|width=\d+&height=\d+&quality=\d+/, '') ||
-            placeholderImg
+            playQueue.current?.image.replace(/&size=\d+|width=\d+&height=\d+&quality=\d+/, '')
+              ? playQueue.current?.image.replace(/&size=\d+|width=\d+&height=\d+&quality=\d+/, '')
+              : theme.includes('Light')
+              ? LightSiderLogo
+              : DarkSiderLogo
           }
           style={{
             width: 'auto',

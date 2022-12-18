@@ -12,10 +12,10 @@ import {
   StyledInput,
   StyledInputPickerContainer,
   StyledRadio,
+  CustomLoginLogo,
 } from '../shared/styled';
 import { LoginPanel } from './styled';
 import GenericPage from '../layout/GenericPage';
-import logo from '../../../assets/icon.png';
 import { mockSettings } from '../../shared/mockSettings';
 import packageJson from '../../package.json';
 import { Server } from '../../types';
@@ -26,10 +26,61 @@ const Login = () => {
   const [serverName, setServerName] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [isLogin, setIsLogin] = useState(true);
+  const [confirm_password, setConfirmPassword] = useState('');
   const [legacyAuth, setLegacyAuth] = useState(false);
   const [message, setMessage] = useState('');
   const serverTypePickerRef = useRef(null);
+  const handleSignUp = async () => {
+    const cleanServerName = serverName.replace(/\/$/, '');
+    const salt = randomstring.generate({ length: 16, charset: 'alphanumeric' });
+    const hash = md5(password + salt);
+    if (cleanServerName.length === 0) {
+      console.log(cleanServerName);
 
+      setMessage('请输入服务器地址!');
+      return;
+    }
+    if (password !== confirm_password) {
+      setMessage('两次密码输入不一致！');
+      return;
+    }
+    try {
+      const signup = await axios.post(`${cleanServerName}/auth/createNormalUser`, {
+        username: userName,
+        password: password,
+      });
+      if (signup.status < 200 || signup.status > 300) {
+        setMessage(signup.statusText);
+        return;
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        setMessage(`${err.message}`);
+        return;
+      }
+      setMessage(t('An unknown error occurred'));
+    }
+    localStorage.setItem('server', cleanServerName);
+    localStorage.setItem('serverBase64', btoa(cleanServerName));
+    localStorage.setItem('serverType', 'subsonic');
+    localStorage.setItem('username', userName);
+    localStorage.setItem('password', password);
+    localStorage.setItem('salt', salt);
+    localStorage.setItem('hash', hash);
+
+    settings.setSync('server', cleanServerName);
+    settings.setSync('serverBase64', btoa(cleanServerName));
+    settings.setSync('serverType', 'subsonic');
+    settings.setSync('username', userName);
+    settings.setSync('password', password);
+    settings.setSync('salt', salt);
+    settings.setSync('hash', hash);
+
+    // Set defaults on login
+    setDefaultSettings(false);
+    window.location.reload();
+  };
   const handleConnect = async () => {
     setMessage('');
     const cleanServerName = serverName.replace(/\/$/, '');
@@ -80,7 +131,6 @@ const Login = () => {
     setDefaultSettings(false);
     window.location.reload();
   };
-
   const handleConnectJellyfin = async () => {
     setMessage('');
     const cleanServerName = serverName.replace(/\/$/, '');
@@ -129,15 +179,14 @@ const Login = () => {
 
   return (
     <GenericPage hideDivider>
-      <LoginPanel bordered>
-        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <h1>Sign in</h1>
-          <img src={logo} height="80px" width="80px" alt="" />
+      <LoginPanel bordered style={{ display: isLogin ? 'block' : 'none' }}>
+        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CustomLoginLogo />
         </span>
         <br />
         {message !== '' && <Message type="error" description={message} />}
-        <Form id="login-form" fluid style={{ paddingTop: '20px' }}>
-          <StyledInputPickerContainer ref={serverTypePickerRef}>
+        <Form id="login-form" fluid style={{ paddingTop: '10px' }}>
+          <StyledInputPickerContainer ref={serverTypePickerRef} style={{ display: 'none' }}>
             <ControlLabel>{t('Server type')}</ControlLabel>
             <RadioGroup
               inline
@@ -205,6 +254,93 @@ const Login = () => {
             onClick={serverType !== 'jellyfin' ? handleConnect : handleConnectJellyfin}
           >
             {t('Connect')}
+          </StyledButton>
+          <StyledButton
+            id="sign-button"
+            appearance="primary"
+            type="submit"
+            block
+            onClick={() => setIsLogin(false)}
+          >
+            {t('注册账户')}
+          </StyledButton>
+        </Form>
+      </LoginPanel>
+      <LoginPanel bordered style={{ display: isLogin ? 'none' : 'block' }}>
+        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <CustomLoginLogo />
+        </span>
+        <br />
+        {message !== '' && <Message type="error" description={message} />}
+        <Form id="login-form" fluid style={{ paddingTop: '10px' }}>
+          <StyledInputPickerContainer ref={serverTypePickerRef} style={{ display: 'none' }}>
+            <ControlLabel>{t('Server type')}</ControlLabel>
+            <RadioGroup
+              inline
+              defaultValue="subsonic"
+              value={serverType}
+              onChange={(e: Server) => setServerType(e)}
+            >
+              <StyledRadio value="subsonic">Subsonic</StyledRadio>
+              <StyledRadio value="jellyfin">Jellyfin</StyledRadio>
+            </RadioGroup>
+          </StyledInputPickerContainer>
+          <br />
+          <ControlLabel>{t('Server')}</ControlLabel>
+          <StyledInput
+            id="login-servername"
+            name="servername"
+            value={serverName}
+            onChange={(e: string) => setServerName(e)}
+            placeholder={t('Requires http(s)://')}
+          />
+          <br />
+          <ControlLabel>{t('Username')}</ControlLabel>
+          <StyledInput
+            id="login-username"
+            name="name"
+            value={userName}
+            onChange={(e: string) => setUserName(e)}
+            placeholder={t('Enter username')}
+          />
+          <br />
+          <ControlLabel>{t('Password')}</ControlLabel>
+          <StyledInput
+            id="login-password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e: string) => setPassword(e)}
+            placeholder={t('Enter password')}
+          />
+          <br />
+          <ControlLabel>{t('Password')}</ControlLabel>
+          <StyledInput
+            id="login-password"
+            name="confirm-password"
+            type="password"
+            value={confirm_password}
+            onChange={(e: string) => setConfirmPassword(e)}
+            placeholder={t('Confirm Enter password')}
+          />
+          <br />
+          <StyledButton
+            id="login-button"
+            appearance="primary"
+            type="submit"
+            block
+            onClick={handleSignUp}
+          >
+            {t('Sign Up')}
+          </StyledButton>
+          <StyledButton
+            id="lo-button"
+            appearance="primary"
+            type="submit"
+            block
+            onClick={() => setIsLogin(true)}
+          >
+            {t('登陆账户')}
           </StyledButton>
         </Form>
       </LoginPanel>

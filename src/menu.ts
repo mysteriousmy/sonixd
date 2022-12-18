@@ -43,7 +43,7 @@ export default class MenuBuilder {
 
   buildDarwinTemplate(): MenuItemConstructorOptions[] {
     const subMenuAbout: DarwinMenuItemConstructorOptions = {
-      label: 'Sonixd',
+      label: '源音云',
       submenu: [
         {
           label: 'About Sonixd',

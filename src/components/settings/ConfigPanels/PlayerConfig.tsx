@@ -167,10 +167,9 @@ const PlayerConfig = ({ bordered }: any) => {
         name={t('Resume Playback')}
         description={
           <Trans>
-            Remember play queue on startup. The current Now Playing queue will be saved on exiting,
-            and will be restored when you reopen Sonixd. Be warned that you should manually close
-            Sonixd for the queue to be saved. An improper shutdown (such as the app closing during a
-            shutdown or force quitting) may result in history not being saved.
+            启动时记住播放队列。当前正在播放的队列将在退出时被保存，并在你重新打开软件时被恢复。
+            请注意，你应该手动关闭软件以保存队列。不适当的关闭（如在关机时关闭应用程序或强制退
+            出）可能导致历史记录无法保存。
           </Trans>
         }
         option={
