@@ -23,7 +23,7 @@ import { Server } from '../../types';
 const Login = () => {
   const { t } = useTranslation();
   const [serverType, setServerType] = useState('subsonic');
-  const [serverName, setServerName] = useState('');
+  const [serverName, setServerName] = useState(packageJson.author.url);
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
@@ -198,16 +198,15 @@ const Login = () => {
               <StyledRadio value="jellyfin">Jellyfin</StyledRadio>
             </RadioGroup>
           </StyledInputPickerContainer>
-          <br />
-          <ControlLabel>{t('Server')}</ControlLabel>
+          <ControlLabel style={{ display: 'none' }}>{t('Server')}</ControlLabel>
           <StyledInput
             id="login-servername"
             name="servername"
             value={serverName}
+            style={{ display: 'none' }}
             onChange={(e: string) => setServerName(e)}
             placeholder={t('Requires http(s)://')}
           />
-          <br />
           <ControlLabel>{t('Username')}</ControlLabel>
           <StyledInput
             id="login-username"
@@ -285,16 +284,15 @@ const Login = () => {
               <StyledRadio value="jellyfin">Jellyfin</StyledRadio>
             </RadioGroup>
           </StyledInputPickerContainer>
-          <br />
-          <ControlLabel>{t('Server')}</ControlLabel>
+          <ControlLabel style={{ display: 'none' }}>{t('Server')}</ControlLabel>
           <StyledInput
             id="login-servername"
             name="servername"
+            style={{ display: 'none' }}
             value={serverName}
             onChange={(e: string) => setServerName(e)}
             placeholder={t('Requires http(s)://')}
           />
-          <br />
           <ControlLabel>{t('Username')}</ControlLabel>
           <StyledInput
             id="login-username"

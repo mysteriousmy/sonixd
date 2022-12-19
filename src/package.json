@@ -6,7 +6,7 @@
   "main": "./main.prod.js",
   "author": {
     "name": "jeffvli",
-    "url": "https://github.com/jeffvli/sonixd"
+    "url": "http://music.hy.com"
   },
   "scripts": {
     "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",

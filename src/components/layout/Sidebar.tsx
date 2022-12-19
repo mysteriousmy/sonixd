@@ -45,7 +45,6 @@ const Sidebar = ({
   );
   const [mainNavRef, { height: mainNavHeight }] = useMeasure<HTMLDivElement>();
   const [sidebarBodyRef, { height: sidebarBodyHeight }] = useMeasure<HTMLDivElement>();
-  console.log(theme);
   const getSidebarWidth = useCallback((num: number) => {
     if (num < 165) {
       return 165;
